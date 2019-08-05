@@ -12,7 +12,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (isDarkTheme()) {
             setTheme(R.style.AppDarkTheme);
@@ -21,12 +21,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected boolean isDarkTheme() {
+    public boolean isDarkTheme() {
         SharedPreferences sharedPreferences = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         return sharedPreferences.getBoolean(IS_DARK_THEME, true);
     }
 
-    protected void setDarkTheme(boolean isDarkTheme) {
+    public void setDarkTheme(boolean isDarkTheme) {
         SharedPreferences sharedPreferences = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(IS_DARK_THEME, isDarkTheme);

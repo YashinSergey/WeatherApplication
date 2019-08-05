@@ -1,6 +1,8 @@
-package com.example.weatherapplication;
+package com.example.weatherapplication.weatherdata;
 
 import android.content.Context;
+
+import com.example.weatherapplication.R;
 
 import org.json.JSONObject;
 
@@ -18,7 +20,7 @@ public class WeatherDataLoader {
     private static final String NEW_LINE = "\n";
     private static final int FINE = 200;
 
-    static JSONObject getJSONData(Context context, String city) {
+    public static JSONObject getJSONData(Context context, String city) {
         try {
             URL url = new URL(String.format(OPEN_WEATHER_MAP_API,city));
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();

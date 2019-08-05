@@ -1,4 +1,4 @@
-package com.example.weatherapplication;
+package com.example.weatherapplication.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
+
+import com.example.weatherapplication.BaseActivity;
+import com.example.weatherapplication.R;
 
 public class SettingsFragment extends Fragment {
 
