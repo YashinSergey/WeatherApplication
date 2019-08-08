@@ -212,20 +212,6 @@ public class WeatherFragment extends Fragment {
         }
     };
 
-    private void showRoomHumidity(SensorEvent sensorEvent) {
-        StringBuilder humidityStrBuilder = new StringBuilder();
-        humidityStrBuilder.append("Room humidity\n").append(sensorEvent.values[0])
-                .append("%");
-        roomHumidity.setText(humidityStrBuilder);
-    }
-
-    private void showRoomTemperature(SensorEvent sensorEvent) {
-        StringBuilder temperatureStrBuilder = new StringBuilder();
-        temperatureStrBuilder.append("Room temperature\n").append(sensorEvent.values[0])
-                .append("\u00b0C");
-        roomTemperature.setText(temperatureStrBuilder);
-    }
-
     private void showRoomIndicator(SensorEvent sensorEvent, TextView view, String subscription, String symbol) {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append(subscription +"\n").append(sensorEvent.values[0])
