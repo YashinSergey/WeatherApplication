@@ -16,7 +16,7 @@ import com.example.weatherapplication.R;
 
 public class SettingsFragment extends Fragment {
 
-    BaseActivity baseActivity;
+    private BaseActivity baseActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

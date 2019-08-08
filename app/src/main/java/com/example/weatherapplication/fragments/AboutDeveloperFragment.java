@@ -14,8 +14,8 @@ import com.example.weatherapplication.R;
 
 public class AboutDeveloperFragment extends Fragment {
 
-    ImageView imageView;
-    EditText editText;
+    private ImageView imageView;
+    private EditText editText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

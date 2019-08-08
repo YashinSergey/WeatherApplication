@@ -2,6 +2,8 @@ package com.example.weatherapplication.fragments;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.example.weatherapplication.weatherdata.WeatherDataLoader;
 import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -38,7 +41,6 @@ public class WeatherFragment extends Fragment {
     private TextView currentTemperatureTextView;
     private TextView weatherIcon;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +55,17 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
-        cityTextView = (TextView) rootView.findViewById(R.id.city_field);
-        updatedTextView = (TextView) rootView.findViewById(R.id.update_field);
-        detailsTextView = (TextView) rootView.findViewById(R.id.details_field);
-        currentTemperatureTextView = (TextView) rootView.findViewById(R.id.current_temperature_field);
-        weatherIcon = (TextView) rootView.findViewById(R.id.weather_icon);
+        initViews(rootView);
         weatherIcon.setTypeface(weatherFont);
         return rootView;
+    }
+
+    private void initViews(View rootView) {
+        cityTextView = rootView.findViewById(R.id.city_field);
+        updatedTextView = rootView.findViewById(R.id.update_field);
+        detailsTextView = rootView.findViewById(R.id.details_field);
+        currentTemperatureTextView = rootView.findViewById(R.id.current_temperature_field);
+        weatherIcon = rootView.findViewById(R.id.weather_icon);
     }
 
     private void updateWeatherData(final String city) {
