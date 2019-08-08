@@ -14,7 +14,6 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 import com.example.weatherapplication.fragments.AboutDeveloperFragment;
 import com.example.weatherapplication.fragments.SettingsFragment;
 import com.example.weatherapplication.fragments.WeatherFragment;
@@ -51,7 +50,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         aboutDeveloperFragment = new AboutDeveloperFragment();
     }
 
-    private void initSideMenu(androidx.appcompat.widget.Toolbar toolbar) {
+    private void initSideMenu(Toolbar toolbar) {
         DrawerLayout drawer = findViewById(R.id.container_for_fragments);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,17 +81,14 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        switch (id) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 goToTheFragment(weatherFragment);
                 break;
             case R.id.about_developer:
                 goToTheFragment(aboutDeveloperFragment);
-                Toast.makeText(this, "is working", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.feedback:
-                Toast.makeText(this, "WTF?", Toast.LENGTH_SHORT).show();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.container_for_fragments);

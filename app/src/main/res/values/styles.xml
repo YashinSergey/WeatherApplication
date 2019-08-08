@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppDarkTheme" parent="Theme.MaterialComponents"/>
+    <style name="AppDarkTheme" parent="Theme.MaterialComponents.NoActionBar"/>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

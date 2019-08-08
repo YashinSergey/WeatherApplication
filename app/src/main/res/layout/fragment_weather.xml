@@ -55,5 +55,22 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/temperature_font_size"/>
 
+    <TextView
+        android:id="@+id/room_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:textSize="@dimen/room_indicators_font_size" />
+
+    <TextView
+        android:id="@+id/room_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:textSize="@dimen/room_indicators_font_size" />
 
 </RelativeLayout>

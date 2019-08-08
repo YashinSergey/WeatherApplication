@@ -3,6 +3,8 @@ package com.example.weatherapplication.fragments;
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,21 +27,31 @@ import com.example.weatherapplication.weatherdata.WeatherDataLoader;
 import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
+import static android.content.Context.SENSOR_SERVICE;
 
 public class WeatherFragment extends Fragment {
 
     private static final String LOG_TAG = "WeatherFragment";
     private static final String FONT_FILENAME = "fonts/weather.ttf";
+
     private final Handler handler = new Handler();
+
     private Typeface weatherFont;
     private TextView cityTextView;
     private TextView updatedTextView;
     private TextView detailsTextView;
     private TextView currentTemperatureTextView;
     private TextView weatherIcon;
+
+    private TextView roomTemperature;
+    private TextView roomHumidity;
+    private Sensor sensorTemperature;
+    private Sensor sensorHumidity;
+    private SensorManager sensorManager;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +69,7 @@ public class WeatherFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
         initViews(rootView);
         weatherIcon.setTypeface(weatherFont);
+        getSensors();
         return rootView;
     }
 
@@ -66,6 +79,8 @@ public class WeatherFragment extends Fragment {
         detailsTextView = rootView.findViewById(R.id.details_field);
         currentTemperatureTextView = rootView.findViewById(R.id.current_temperature_field);
         weatherIcon = rootView.findViewById(R.id.weather_icon);
+        roomTemperature = rootView.findViewById(R.id.room_temperature);
+        roomHumidity = rootView.findViewById(R.id.room_humidity);
     }
 
     private void updateWeatherData(final String city) {
@@ -156,8 +171,65 @@ public class WeatherFragment extends Fragment {
         weatherIcon.setText(icon);
     }
 
-
     public void selectCity(String city) {
         updateWeatherData(city);
+    }
+
+    private void getSensors() {
+        sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
+
+        assert sensorManager != null;
+        sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        sensorHumidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sensorManager.registerListener(sensorsListener, sensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorsListener, sensorHumidity, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorsListener, sensorTemperature);
+        sensorManager.unregisterListener(sensorsListener, sensorHumidity);
+    }
+
+    SensorEventListener sensorsListener = new SensorEventListener() {
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if (sensorEvent.sensor == sensorHumidity){
+                showRoomIndicator(sensorEvent, roomHumidity,  "Room humidity", "%");
+            }
+            if (sensorEvent.sensor == sensorTemperature) {
+                showRoomIndicator(sensorEvent, roomTemperature, "Room temperature", "\u00b0C");
+            }
+        }
+    };
+
+    private void showRoomHumidity(SensorEvent sensorEvent) {
+        StringBuilder humidityStrBuilder = new StringBuilder();
+        humidityStrBuilder.append("Room humidity\n").append(sensorEvent.values[0])
+                .append("%");
+        roomHumidity.setText(humidityStrBuilder);
+    }
+
+    private void showRoomTemperature(SensorEvent sensorEvent) {
+        StringBuilder temperatureStrBuilder = new StringBuilder();
+        temperatureStrBuilder.append("Room temperature\n").append(sensorEvent.values[0])
+                .append("\u00b0C");
+        roomTemperature.setText(temperatureStrBuilder);
+    }
+
+    private void showRoomIndicator(SensorEvent sensorEvent, TextView view, String subscription, String symbol) {
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.append(subscription +"\n").append(sensorEvent.values[0])
+                .append(symbol);
+        view.setText(strBuilder);
     }
 }
