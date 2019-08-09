@@ -29,19 +29,18 @@
         android:id="@+id/weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/elements_vertical_margin"
-        android:layout_below="@id/update_field"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textSize="@dimen/icon_font_size"/>
-
 
     <TextView
         android:id="@+id/details_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weather_icon"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@+id/weather_icon"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -49,9 +48,9 @@
         android:id="@+id/current_temperature_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/details_field"
-        android:layout_marginTop="@dimen/elements_vertical_margin"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/weather_icon"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/temperature_font_size"/>
 
@@ -61,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:gravity="center"
         android:textSize="@dimen/room_indicators_font_size" />
 
