@@ -2,10 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/about_developer_fragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/avatar_image_about_developer"
@@ -13,9 +15,10 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:paddingTop="@dimen/elements_vertical_margin"
-        app:srcCompat="@mipmap/avatar" />
+        app:srcCompat="@mipmap/avatar"
+        tools:ignore="ContentDescription" />
 
-    <EditText
+    <TextView
         android:id="@+id/about_developer_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

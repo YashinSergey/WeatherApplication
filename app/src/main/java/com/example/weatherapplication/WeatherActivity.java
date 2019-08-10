@@ -28,29 +28,28 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private SettingsFragment settingsFragment;
     private AboutDeveloperFragment aboutDeveloperFragment;
     private WeatherFragment weatherFragment;
-    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         cityPreference = new CityPreference(this);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         initFragments(savedInstanceState);
-        initSideMenu(toolbar);
+        initSideMenu();
     }
 
     private void initFragments(Bundle savedInstanceState) {
         weatherFragment = new WeatherFragment();
         if (savedInstanceState == null) {
-            goToTheFragment(weatherFragment);
+            replaceFragment(weatherFragment);
         }
         settingsFragment = new SettingsFragment();
         aboutDeveloperFragment = new AboutDeveloperFragment();
     }
 
-    private void initSideMenu(Toolbar toolbar) {
+    private void initSideMenu() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.container_for_fragments);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,7 +72,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
                 showInputDialog();
                 return true;
             case R.id.settings:
-                goToTheFragment(settingsFragment);
+                replaceFragment(settingsFragment);
                 return true;
         }
         return false;
@@ -83,10 +82,10 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                goToTheFragment(weatherFragment);
+                replaceFragment(weatherFragment);
                 break;
             case R.id.about_developer:
-                goToTheFragment(aboutDeveloperFragment);
+                replaceFragment(aboutDeveloperFragment);
                 break;
             case R.id.feedback:
                 break;
@@ -117,7 +116,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         cityPreference.setCity(city);
     }
 
-    private void goToTheFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_for_fragments, fragment);
         fragmentTransaction.addToBackStack(null);

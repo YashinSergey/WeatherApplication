@@ -139,30 +139,30 @@ public class WeatherFragment extends Fragment {
         if (actualId == 800) {
             long currentTime = new Date().getTime();
             if (currentTime >= sunrise && currentTime < sunset) {
-                icon = getActivity().getString(R.string.weather_sunny);
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_sunny);
             } else {
-                icon = getActivity().getString(R.string.weather_clear_night);
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_clear_night);
             }
         } else {
             Log.d(LOG_TAG, "id " + id);
             switch (id) {
                 case 2:
-                    icon = getActivity().getString(R.string.weather_thunder);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_thunder);
                     break;
                 case 3:
-                    icon = getActivity().getString(R.string.weather_drizzle);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_drizzle);
                     break;
                 case 5:
-                    icon = getActivity().getString(R.string.weather_rainy);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_rainy);
                     break;
                 case 6:
-                    icon = getActivity().getString(R.string.weather_snowy);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_snowy);
                     break;
                 case 7:
-                    icon = getActivity().getString(R.string.weather_foggy);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_foggy);
                     break;
                 case 8:
-                    icon = getActivity().getString(R.string.weather_cloudy);
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_cloudy);
                     break;
                 default:
                     break;
@@ -197,7 +197,7 @@ public class WeatherFragment extends Fragment {
         sensorManager.unregisterListener(sensorsListener, sensorHumidity);
     }
 
-    SensorEventListener sensorsListener = new SensorEventListener() {
+    private SensorEventListener sensorsListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
@@ -214,7 +214,7 @@ public class WeatherFragment extends Fragment {
 
     private void showRoomIndicator(SensorEvent sensorEvent, TextView view, String subscription, String symbol) {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append(subscription +"\n").append(sensorEvent.values[0])
+        strBuilder.append(subscription).append("\n").append(sensorEvent.values[0])
                 .append(symbol);
         view.setText(strBuilder);
     }
