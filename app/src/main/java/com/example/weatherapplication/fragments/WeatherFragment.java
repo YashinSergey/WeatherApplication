@@ -24,6 +24,7 @@ import com.example.weatherapplication.weatherdata.CityPreference;
 import com.example.weatherapplication.R;
 import com.example.weatherapplication.WeatherActivity;
 import com.example.weatherapplication.weatherdata.WeatherDataLoader;
+import com.example.weatherapplication.weatherdata.WeatherDataService;
 
 import org.json.JSONObject;
 import java.text.DateFormat;
@@ -52,6 +53,7 @@ public class WeatherFragment extends Fragment {
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
     private SensorManager sensorManager;
+    public static String cityPref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class WeatherFragment extends Fragment {
 
         assert activity != null;
         weatherFont = Typeface.createFromAsset(activity.getAssets(), FONT_FILENAME);
-        updateWeatherData(new CityPreference(activity).getCity());
+        cityPref = new CityPreference(activity).getCity();
     }
 
     @Nullable
@@ -73,6 +75,11 @@ public class WeatherFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     private void initViews(View rootView) {
         cityTextView = rootView.findViewById(R.id.city_field);
         updatedTextView = rootView.findViewById(R.id.update_field);
@@ -83,11 +90,11 @@ public class WeatherFragment extends Fragment {
         roomHumidity = rootView.findViewById(R.id.room_humidity);
     }
 
-    private void updateWeatherData(final String city) {
+    public void updateWeatherData(final String city) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final JSONObject json = WeatherDataLoader.getJSONData(getActivity(), city);
+                final JSONObject json = WeatherDataService.getJSONData(getActivity(), city);
                 if (json == null) {
                     handler.post(new Runnable() {
                         @Override
@@ -111,7 +118,7 @@ public class WeatherFragment extends Fragment {
     private void renderWeather(JSONObject json) {
         Log.d(LOG_TAG, "json " + json.toString());
         try {
-            cityTextView.setText(json.getString("name").toUpperCase(Locale.US) + " ,"
+            cityTextView.setText(json.getString("name").toUpperCase(Locale.US) + ", "
                     + json.getJSONObject("sys").getString("country"));
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
