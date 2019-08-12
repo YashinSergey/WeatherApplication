@@ -1,6 +1,7 @@
 package com.example.weatherapplication.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -37,7 +38,7 @@ public class WeatherFragment extends Fragment {
     private static final String LOG_TAG = "WeatherFragment";
     private static final String FONT_FILENAME = "fonts/weather.ttf";
 
-    private final Handler handler = new Handler();
+    private Handler handler = new Handler();
 
     private Typeface weatherFont;
     private TextView cityTextView;
@@ -51,7 +52,6 @@ public class WeatherFragment extends Fragment {
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
     private SensorManager sensorManager;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
