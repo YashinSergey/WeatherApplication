@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import com.example.weatherapplication.R;
 public class AboutDeveloperFragment extends Fragment {
 
     private ImageView imageView;
-    private EditText editText;
+    private TextView textView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class AboutDeveloperFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_developer, container, false);
         imageView = view.findViewById(R.id.avatar_image_about_developer);
-        editText = view.findViewById(R.id.about_developer_edit_text);
+        textView = view.findViewById(R.id.about_developer_edit_text);
         return view;
     }
 }

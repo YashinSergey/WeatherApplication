@@ -50,7 +50,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private void initSideMenu() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.container_for_fragments);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
@@ -90,7 +90,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
             case R.id.feedback:
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.container_for_fragments);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
