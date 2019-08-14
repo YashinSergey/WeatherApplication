@@ -28,7 +28,7 @@
         tools:ignore="UnusedAttribute">
 
         <TextView
-            android:id="@+id/about_developer_edit_text"
+            android:id="@+id/about_developer_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_developer_text"

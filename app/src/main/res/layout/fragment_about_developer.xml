@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/elements_vertical_margin">
 
         <TextView
-            android:id="@+id/about_developer_edit_text"
+            android:id="@+id/about_developer_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
