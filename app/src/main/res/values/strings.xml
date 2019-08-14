@@ -29,5 +29,6 @@
     <string name="open_navigation_drawer">Open navigation drawer</string>
     <string name="close_navigation_drawer">Close navigation drawer</string>
     <string name="room_temperature_res">Room temperature</string>
+    <string name="send">send</string>
 
 </resources>

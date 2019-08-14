@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import com.example.weatherapplication.fragments.AboutDeveloperFragment;
+import com.example.weatherapplication.fragments.FeedbackFragment;
 import com.example.weatherapplication.fragments.SettingsFragment;
 import com.example.weatherapplication.fragments.WeatherFragment;
 import com.example.weatherapplication.weatherdata.CityPreference;
@@ -27,6 +28,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private CityPreference cityPreference;
     private SettingsFragment settingsFragment;
     private AboutDeveloperFragment aboutDeveloperFragment;
+    private FeedbackFragment feedbackFragment;
     private WeatherFragment weatherFragment;
 
     @Override
@@ -45,6 +47,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         }
         settingsFragment = new SettingsFragment();
         aboutDeveloperFragment = new AboutDeveloperFragment();
+        feedbackFragment = new FeedbackFragment();
     }
 
     private void initSideMenu() {
@@ -88,6 +91,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
                 replaceFragment(aboutDeveloperFragment);
                 break;
             case R.id.feedback:
+                replaceFragment(feedbackFragment);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

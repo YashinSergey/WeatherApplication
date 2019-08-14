@@ -15,9 +15,6 @@ import com.example.weatherapplication.R;
 
 public class AboutDeveloperFragment extends Fragment {
 
-    private ImageView imageView;
-    private TextView textView;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +23,6 @@ public class AboutDeveloperFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_about_developer, container, false);
-        imageView = view.findViewById(R.id.avatar_image_about_developer);
-        textView = view.findViewById(R.id.about_developer_edit_text);
-        return view;
+        return inflater.inflate(R.layout.fragment_about_developer, container, false);
     }
 }
