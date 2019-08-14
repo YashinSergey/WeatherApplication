@@ -19,12 +19,11 @@
         android:paddingTop="@dimen/elements_vertical_margin"
         app:srcCompat="@mipmap/rain" />
 
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
         android:text="@string/developer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/text_color"/>
+        android:textColor="@color/text_color_white"/>
 
 </LinearLayout>

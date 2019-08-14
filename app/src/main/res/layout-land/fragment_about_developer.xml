@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,32 +9,30 @@
     android:layout_height="match_parent"
     tools:ignore="UseCompoundDrawables">
 
+
     <ImageView
         android:id="@+id/avatar_image_about_developer"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:paddingTop="@dimen/elements_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:gravity="start"
+        android:layout_marginTop="@dimen/elements_vertical_margin"
         app:srcCompat="@mipmap/avatar"
         tools:ignore="ContentDescription" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/elements_vertical_margin">
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/avatar_image_about_developer"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        tools:ignore="UnusedAttribute">
 
         <TextView
             android:id="@+id/about_developer_edit_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:text="@string/about_developer_text"
             android:textColor="@color/text_color_black"/>
+
     </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

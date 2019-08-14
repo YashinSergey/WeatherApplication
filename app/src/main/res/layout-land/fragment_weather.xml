@@ -54,7 +54,7 @@
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/temperature_font_size"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RelativeOverlap,RtlSymmetry" />
 
     <TextView
         android:id="@+id/room_temperature"
