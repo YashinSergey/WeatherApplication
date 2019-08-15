@@ -1,10 +1,12 @@
-package com.example.weatherapplication;
+package com.example.weatherapplication.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.weatherapplication.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
 

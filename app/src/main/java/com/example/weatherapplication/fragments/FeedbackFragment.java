@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.weatherapplication.R;
-import com.example.weatherapplication.WeatherActivity;
+import com.example.weatherapplication.activities.WeatherActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 

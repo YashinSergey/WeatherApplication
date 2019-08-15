@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.weatherapplication.R;
-import com.example.weatherapplication.WeatherActivity;
+import com.example.weatherapplication.activities.WeatherActivity;
 
 public class AboutDeveloperFragment extends Fragment {
 

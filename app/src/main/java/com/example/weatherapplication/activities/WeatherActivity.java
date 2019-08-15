@@ -1,4 +1,4 @@
-package com.example.weatherapplication;
+package com.example.weatherapplication.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -9,12 +9,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+
+import com.example.weatherapplication.R;
 import com.example.weatherapplication.fragments.AboutDeveloperFragment;
 import com.example.weatherapplication.fragments.FeedbackFragment;
 import com.example.weatherapplication.fragments.SettingsFragment;

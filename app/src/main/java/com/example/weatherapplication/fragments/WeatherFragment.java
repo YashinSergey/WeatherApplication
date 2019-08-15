@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.weatherapplication.weatherdata.CityPreference;
 import com.example.weatherapplication.R;
-import com.example.weatherapplication.WeatherActivity;
+import com.example.weatherapplication.activities.WeatherActivity;
 import com.example.weatherapplication.weatherdata.WeatherDataLoader;
 
 import org.json.JSONObject;

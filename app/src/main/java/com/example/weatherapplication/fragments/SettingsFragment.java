@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.weatherapplication.BaseActivity;
+import com.example.weatherapplication.activities.BaseActivity;
 import com.example.weatherapplication.R;
-import com.example.weatherapplication.WeatherActivity;
+import com.example.weatherapplication.activities.WeatherActivity;
 
 public class SettingsFragment extends Fragment {
 
