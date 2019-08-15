@@ -59,10 +59,8 @@ public class WeatherFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (WeatherActivity) getActivity();
-
         assert activity != null;
         weatherFont = Typeface.createFromAsset(activity.getAssets(), FONT_FILENAME);
-        updateWeatherData(new CityPreference(activity).getCity());
     }
 
     @Nullable
@@ -71,6 +69,7 @@ public class WeatherFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
         initViews(rootView);
         weatherIcon.setTypeface(weatherFont);
+        updateWeatherData(new CityPreference(activity).getCity());
         getSensors();
         return rootView;
     }

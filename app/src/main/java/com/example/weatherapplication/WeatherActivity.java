@@ -70,13 +70,9 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.select_city:
-                showInputDialog();
-                return true;
-            case R.id.settings:
-                replaceFragment(settingsFragment);
-                return true;
+        if (item.getItemId() == R.id.select_city) {
+            showInputDialog();
+            return true;
         }
         return false;
     }
@@ -92,6 +88,9 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
                 break;
             case R.id.feedback:
                 replaceFragment(feedbackFragment);
+                break;
+            case R.id.settings:
+                replaceFragment(settingsFragment);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
