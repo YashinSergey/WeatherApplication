@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -60,7 +61,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setBackgroundResource(R.drawable.background_day);
+        navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
     }
 
     @Override

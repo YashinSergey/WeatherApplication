@@ -140,9 +140,9 @@ public class WeatherFragment extends Fragment {
         String icon = "";
         long currentTime = new Date().getTime();
         if (currentTime >= sunrise && currentTime < sunset) {
-            relativeLayout.setBackgroundResource(R.drawable.background_day);
+            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         } else {
-            relativeLayout.setBackgroundResource(R.drawable.background_day); //Todo replace background
+            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));; //Todo replace background
         }
         Log.d(LOG_TAG, "id " + id);
         switch (id) {

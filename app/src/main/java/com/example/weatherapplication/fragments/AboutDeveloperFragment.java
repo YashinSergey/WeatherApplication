@@ -34,7 +34,7 @@ public class AboutDeveloperFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about_developer, container, false);
         textView = view.findViewById(R.id.about_developer_textView);
         linearLayout = view.findViewById(R.id.about_developer_fragment);
-        linearLayout.setBackgroundResource(R.drawable.background_day);
+        linearLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         if (activity.isDarkTheme()) {
             textView.setTextColor(Color.WHITE);
         }

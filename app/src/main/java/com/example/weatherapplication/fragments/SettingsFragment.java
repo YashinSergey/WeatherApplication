@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.weatherapplication.BaseActivity;
 import com.example.weatherapplication.R;
+import com.example.weatherapplication.WeatherActivity;
 
 public class SettingsFragment extends Fragment {
 
@@ -29,7 +30,8 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         TableLayout tableLayout = view.findViewById(R.id.settings_fragment);
-        tableLayout.setBackgroundResource(R.drawable.background_day);
+        WeatherActivity weatherActivity = (WeatherActivity) getActivity();
+        tableLayout.setBackground(weatherActivity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         switchTheme(view);
         switchSensors(view);
         return view;

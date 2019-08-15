@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,10 +23,10 @@ import java.util.Objects;
 
 public class FeedbackFragment extends Fragment {
 
-    TextInputEditText textInputEditText;
-    MaterialButton send;
-    WeatherActivity activity;
-    WeatherFragment weatherFragment;
+    private TextInputEditText textInputEditText;
+    private MaterialButton send;
+    private WeatherActivity activity;
+    private WeatherFragment weatherFragment;
 
 
     @Override
@@ -39,6 +40,8 @@ public class FeedbackFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
+        LinearLayout linearLayout = view.findViewById(R.id.feedback_fragment);
+        linearLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         textInputEditText = view.findViewById(R.id.feedback_text);
         send = view.findViewById(R.id.feedback_button);
         send.setOnClickListener(listener);

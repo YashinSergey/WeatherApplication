@@ -14,7 +14,7 @@
             android:title="@string/about_developer" />
         <item
             android:id="@+id/settings"
-            android:icon="@drawable/settings_icon"
+            android:icon="@mipmap/settings_icon"
             android:title="@string/settings"/>
         <item
             android:id="@+id/feedback"
