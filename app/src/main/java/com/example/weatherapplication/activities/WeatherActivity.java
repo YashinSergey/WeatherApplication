@@ -32,6 +32,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private AboutDeveloperFragment aboutDeveloperFragment;
     private FeedbackFragment feedbackFragment;
     private WeatherFragment weatherFragment;
+    private DrawerLayout drawer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,8 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private void initSideMenu() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
+        drawer.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
@@ -96,7 +98,6 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
                 replaceFragment(settingsFragment);
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

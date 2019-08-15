@@ -16,10 +16,15 @@
             android:id="@+id/settings"
             android:icon="@mipmap/settings_icon"
             android:title="@string/settings"/>
-        <item
-            android:id="@+id/feedback"
-            android:icon="@android:drawable/ic_dialog_email"
-            android:title="@string/feedback" />
     </group>
+
+    <item android:title="@string/communicate_menu">
+        <menu>
+            <item
+                android:id="@+id/feedback"
+                android:icon="@android:drawable/ic_dialog_email"
+                android:title="@string/feedback" />
+        </menu>
+    </item>
 
 </menu>
