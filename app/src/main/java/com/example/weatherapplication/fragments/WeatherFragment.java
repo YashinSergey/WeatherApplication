@@ -1,7 +1,6 @@
 package com.example.weatherapplication.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,11 +52,13 @@ public class WeatherFragment extends Fragment {
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
     private SensorManager sensorManager;
+    private RelativeLayout relativeLayout;
+    private WeatherActivity activity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WeatherActivity activity = (WeatherActivity) getActivity();
+        activity = (WeatherActivity) getActivity();
 
         assert activity != null;
         weatherFont = Typeface.createFromAsset(activity.getAssets(), FONT_FILENAME);
@@ -81,6 +83,7 @@ public class WeatherFragment extends Fragment {
         weatherIcon = rootView.findViewById(R.id.weather_icon);
         roomTemperature = rootView.findViewById(R.id.room_temperature);
         roomHumidity = rootView.findViewById(R.id.room_humidity);
+        relativeLayout = rootView.findViewById(R.id.weather_fragment);
     }
 
     private void updateWeatherData(final String city) {
@@ -136,37 +139,34 @@ public class WeatherFragment extends Fragment {
     private void setWeatherIcon(int actualId, long sunrise, long sunset) {
         int id = actualId / 100;
         String icon = "";
-        if (actualId == 800) {
-            long currentTime = new Date().getTime();
-            if (currentTime >= sunrise && currentTime < sunset) {
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_sunny);
-            } else {
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_clear_night);
-            }
+        long currentTime = new Date().getTime();
+        if (currentTime >= sunrise && currentTime < sunset) {
+            relativeLayout.setBackgroundResource(R.drawable.background_day);
         } else {
-            Log.d(LOG_TAG, "id " + id);
-            switch (id) {
-                case 2:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_thunder);
-                    break;
-                case 3:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_drizzle);
-                    break;
-                case 5:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_rainy);
-                    break;
-                case 6:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_snowy);
-                    break;
-                case 7:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_foggy);
-                    break;
-                case 8:
-                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_cloudy);
-                    break;
-                default:
-                    break;
-            }
+            relativeLayout.setBackgroundResource(R.drawable.background_night);
+        }
+        Log.d(LOG_TAG, "id " + id);
+        switch (id) {
+            case 2:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_thunder);
+                break;
+            case 3:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_drizzle);
+                break;
+            case 5:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_rainy);
+                break;
+            case 6:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_snowy);
+                break;
+            case 7:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_foggy);
+                break;
+            case 8:
+                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_cloudy);
+                break;
+            default:
+                break;
         }
         weatherIcon.setText(icon);
     }
@@ -176,25 +176,31 @@ public class WeatherFragment extends Fragment {
     }
 
     private void getSensors() {
-        sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
+        if (activity.isShowSensors()) {
+            sensorManager = (SensorManager) Objects.requireNonNull(getActivity()).getSystemService(SENSOR_SERVICE);
 
-        assert sensorManager != null;
-        sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        sensorHumidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+            assert sensorManager != null;
+            sensorTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            sensorHumidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        sensorManager.registerListener(sensorsListener, sensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(sensorsListener, sensorHumidity, SensorManager.SENSOR_DELAY_NORMAL);
+        if (activity.isShowSensors()) {
+            sensorManager.registerListener(sensorsListener, sensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(sensorsListener, sensorHumidity, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(sensorsListener, sensorTemperature);
-        sensorManager.unregisterListener(sensorsListener, sensorHumidity);
+        if (activity.isShowSensors()) {
+            sensorManager.unregisterListener(sensorsListener, sensorTemperature);
+            sensorManager.unregisterListener(sensorsListener, sensorHumidity);
+        }
     }
 
     private SensorEventListener sensorsListener = new SensorEventListener() {

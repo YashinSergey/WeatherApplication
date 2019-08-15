@@ -4,14 +4,15 @@
     android:id="@+id/settings_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/elements_vertical_margin">
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/switch_theme_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/theme"
@@ -22,6 +23,28 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/switch_sensors_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sensors"
+            android:paddingStart="5sp"
+            android:layout_weight="4"
+            android:textSize="23sp"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_sensors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

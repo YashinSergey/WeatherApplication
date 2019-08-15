@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,9 @@ import com.example.weatherapplication.WeatherActivity;
 
 public class AboutDeveloperFragment extends Fragment {
 
-    WeatherActivity activity;
-    TextView textView;
+    private WeatherActivity activity;
+    private TextView textView;
+    private LinearLayout linearLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class AboutDeveloperFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_developer, container, false);
         textView = view.findViewById(R.id.about_developer_textView);
+        linearLayout = view.findViewById(R.id.about_developer_fragment);
+        linearLayout.setBackgroundResource(R.drawable.background_day);
         if (activity.isDarkTheme()) {
             textView.setTextColor(Color.WHITE);
         }

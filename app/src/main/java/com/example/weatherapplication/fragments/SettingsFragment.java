@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-
+import android.widget.TableLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
@@ -28,7 +28,10 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        TableLayout tableLayout = view.findViewById(R.id.settings_fragment);
+        tableLayout.setBackgroundResource(R.drawable.background_day);
         switchTheme(view);
+        switchSensors(view);
         return view;
     }
 
@@ -39,6 +42,18 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 baseActivity.setDarkTheme(b);
+                baseActivity.recreate();
+            }
+        });
+    }
+
+    private void switchSensors(View view) {
+        SwitchCompat switchSensors = view.findViewById(R.id.switch_sensors);
+        switchSensors.setChecked(baseActivity.isShowSensors());
+        switchSensors.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                baseActivity.setVisibleSensors(b);
                 baseActivity.recreate();
             }
         });
