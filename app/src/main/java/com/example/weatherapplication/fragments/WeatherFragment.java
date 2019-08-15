@@ -143,7 +143,7 @@ public class WeatherFragment extends Fragment {
         if (currentTime >= sunrise && currentTime < sunset) {
             relativeLayout.setBackgroundResource(R.drawable.background_day);
         } else {
-            relativeLayout.setBackgroundResource(R.drawable.background_night);
+            relativeLayout.setBackgroundResource(R.drawable.background_day); //Todo replace background
         }
         Log.d(LOG_TAG, "id " + id);
         switch (id) {
