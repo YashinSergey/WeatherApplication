@@ -60,6 +60,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setBackgroundResource(R.drawable.background_day);
     }
 
     @Override
