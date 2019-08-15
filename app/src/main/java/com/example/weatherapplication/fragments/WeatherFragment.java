@@ -94,7 +94,7 @@ public class WeatherFragment extends Fragment {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getActivity(), getString(R.string.place_not_found), Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, getString(R.string.place_not_found), Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
