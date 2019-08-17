@@ -7,7 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,7 @@ import com.example.weatherapplication.activities.WeatherActivity;
 import com.example.weatherapplication.weatherdata.WeatherData;
 import com.example.weatherapplication.weatherdata.models.WeatherRequestModel;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -38,14 +38,11 @@ import static android.content.Context.SENSOR_SERVICE;
 public class WeatherFragment extends Fragment {
 
     private static final String LOG_TAG = "WeatherFragment";
-    private static final String RESPONSE = "response";
     private static final String FONT_FILENAME = "fonts/weather.ttf";
-
-    private Handler handler = new Handler();
-
+    
     private Typeface weatherFont;
     private TextView cityTextView;
-    private TextView updatedTextView;
+    private TextView dateTextView;
     private TextView detailsTextView;
     private TextView currentTemperatureTextView;
     private TextView weatherIcon;
@@ -79,7 +76,7 @@ public class WeatherFragment extends Fragment {
 
     private void initViews(View rootView) {
         cityTextView = rootView.findViewById(R.id.city_field);
-        updatedTextView = rootView.findViewById(R.id.update_field);
+        dateTextView = rootView.findViewById(R.id.date_field);
         detailsTextView = rootView.findViewById(R.id.details_field);
         currentTemperatureTextView = rootView.findViewById(R.id.current_temperature_field);
         weatherIcon = rootView.findViewById(R.id.weather_icon);
@@ -89,7 +86,7 @@ public class WeatherFragment extends Fragment {
     }
 
     private void updateWeatherData(final String city) {
-        WeatherData.getWeatherData().getAPI().loadWeather(city + ", ru",
+        WeatherData.getWeatherData().getAPI().loadWeather(city,
                 getString(R.string.open_weather_map_key), "metric")
                 .enqueue(new Callback<WeatherRequestModel>() {
                     @Override
@@ -104,7 +101,7 @@ public class WeatherFragment extends Fragment {
                     public void onFailure(@NonNull Call<WeatherRequestModel> call, @NonNull Throwable t) {
                         Toast.makeText(activity.getApplicationContext(), getString(R.string.network_error),
                                 Toast.LENGTH_SHORT).show();
-                        Log.e(RESPONSE, getString(R.string.network_error));
+                        Log.e("RESPONSE", getString(R.string.network_error));
                     }
                 });
     }
@@ -112,9 +109,16 @@ public class WeatherFragment extends Fragment {
     private void renderWeather(WeatherRequestModel model) {
         Log.d(LOG_TAG, "model " + model.toString());
         setPlaceName(model.name, model.sysModel.country);
-        setDetails(model.weatherModel[0].description, model.mainModel.humidity, model.mainModel.pressure);
+        setDetails(model.weatherModel[0].description, model.windModel.speed, model.mainModel.humidity, model.mainModel.pressure);
         setCurrentTemp(model.mainModel.temp);
         setWeatherIcon(model.weatherModel[0].id, model.sysModel.sunrise * 1000, model.sysModel.sunset * 1000);
+        setDate(model);
+    }
+
+    private void setDate(WeatherRequestModel model) {
+        DateFormat dateFormat = DateFormat.getDateInstance();
+        String date = dateFormat.format(new Date(model.dt * 1000));
+        dateTextView.setText(date);
     }
 
     private void setWeatherIcon(int actualId, long sunrise, long sunset) {
@@ -153,14 +157,15 @@ public class WeatherFragment extends Fragment {
     }
 
     private void setCurrentTemp(float temp) {
-        String currentTextText = String.format(Locale.getDefault(), "%.2f", temp) + "\u2103";
+        String currentTextText = String.format(Locale.getDefault(), "%.0f", temp) + " \u2103";
         currentTemperatureTextView.setText(currentTextText);
     }
 
-    private void setDetails(String description, float humidity, float pressure)  {
+    private void setDetails(String description, float windSpeed, float humidity, float pressure)  {
         String detailsText = description.toUpperCase() + "\n"
-                + "Humidity: " + humidity + "%" + "\n"
-                + "Pressure: " + pressure + "hPa";
+                + "Wind speed: " + windSpeed + " m/s\n"
+                + "Humidity: " + (int)humidity + "%\n"
+                + "Pressure: " + (int)(pressure * 0.75006375541921f) + " mmHg";
         detailsTextView.setText(detailsText);
     }
 
