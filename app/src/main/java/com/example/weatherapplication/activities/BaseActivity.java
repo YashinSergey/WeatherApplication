@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weatherapplication.R;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -18,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         if (isDarkTheme()) {
             setTheme(R.style.AppDarkTheme);
         } else {
