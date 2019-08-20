@@ -31,6 +31,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         TableLayout tableLayout = view.findViewById(R.id.settings_fragment);
         WeatherActivity weatherActivity = (WeatherActivity) getActivity();
+        assert weatherActivity != null;
         tableLayout.setBackground(weatherActivity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         switchTheme(view);
         switchSensors(view);
