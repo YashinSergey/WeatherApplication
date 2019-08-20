@@ -13,9 +13,18 @@
             android:icon="@mipmap/perm_identity"
             android:title="@string/about_developer" />
         <item
-            android:id="@+id/feedback"
-            android:icon="@android:drawable/ic_dialog_email"
-            android:title="@string/feedback" />
+            android:id="@+id/settings"
+            android:icon="@mipmap/settings_icon"
+            android:title="@string/settings"/>
     </group>
+
+    <item android:title="@string/communicate_menu">
+        <menu>
+            <item
+                android:id="@+id/feedback"
+                android:icon="@android:drawable/ic_dialog_email"
+                android:title="@string/feedback" />
+        </menu>
+    </item>
 
 </menu>

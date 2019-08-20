@@ -1,4 +1,4 @@
-package com.example.weatherapplication;
+package com.example.weatherapplication.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,7 +14,10 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+
+import com.example.weatherapplication.R;
 import com.example.weatherapplication.fragments.AboutDeveloperFragment;
+import com.example.weatherapplication.fragments.FeedbackFragment;
 import com.example.weatherapplication.fragments.SettingsFragment;
 import com.example.weatherapplication.fragments.WeatherFragment;
 import com.example.weatherapplication.weatherdata.CityPreference;
@@ -27,13 +30,17 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
     private CityPreference cityPreference;
     private SettingsFragment settingsFragment;
     private AboutDeveloperFragment aboutDeveloperFragment;
+    private FeedbackFragment feedbackFragment;
     private WeatherFragment weatherFragment;
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         cityPreference = new CityPreference(this);
+        initToolbar();
         initFragments(savedInstanceState);
         initSideMenu();
     }
@@ -45,18 +52,24 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
         }
         settingsFragment = new SettingsFragment();
         aboutDeveloperFragment = new AboutDeveloperFragment();
+        feedbackFragment = new FeedbackFragment();
     }
 
     private void initSideMenu() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
+        drawer.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+    }
+
+    private void initToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -67,13 +80,9 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.select_city:
-                showInputDialog();
-                return true;
-            case R.id.settings:
-                replaceFragment(settingsFragment);
-                return true;
+        if (item.getItemId() == R.id.select_city) {
+            showInputDialog();
+            return true;
         }
         return false;
     }
@@ -88,9 +97,12 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
                 replaceFragment(aboutDeveloperFragment);
                 break;
             case R.id.feedback:
+                replaceFragment(feedbackFragment);
+                break;
+            case R.id.settings:
+                replaceFragment(settingsFragment);
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
