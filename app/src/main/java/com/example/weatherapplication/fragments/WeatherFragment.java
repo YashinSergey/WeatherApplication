@@ -1,6 +1,9 @@
 package com.example.weatherapplication.fragments;
 
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.weatherapplication.database.DBHelper;
 import com.example.weatherapplication.weatherdata.CityPreference;
 import com.example.weatherapplication.R;
 import com.example.weatherapplication.activities.WeatherActivity;
@@ -52,8 +57,11 @@ public class WeatherFragment extends Fragment {
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
     private SensorManager sensorManager;
+
     private RelativeLayout relativeLayout;
     private WeatherActivity activity;
+
+    private DBHelper dbHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +69,7 @@ public class WeatherFragment extends Fragment {
         activity = (WeatherActivity) getActivity();
         assert activity != null;
         weatherFont = Typeface.createFromAsset(activity.getAssets(), FONT_FILENAME);
+        dbHelper = new DBHelper(activity.getApplicationContext());
     }
 
     @Nullable
@@ -106,6 +115,20 @@ public class WeatherFragment extends Fragment {
                 });
     }
 
+    private void addToDB(WeatherRequestModel model) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.CITY_NAME, cityTextView.getText().toString());
+        cv.put(DBHelper.DATE, dateTextView.getText().toString());
+        cv.put(DBHelper.TEMP, currentTemperatureTextView.getText().toString());
+        cv.put(DBHelper.WIND_SPEED, detailsTextView.getText().toString());
+        cv.put(DBHelper.PRESSURE, model.mainModel.pressure);
+        cv.put(DBHelper.HUMIDITY, model.mainModel.humidity);
+        db.insert(DBHelper.CITIES_TABLE, null, cv);
+        dbHelper.close();
+    }
+
     private void renderWeather(WeatherRequestModel model) {
         Log.d(LOG_TAG, "model " + model.toString());
         setPlaceName(model.name, model.sysModel.country);
@@ -113,6 +136,7 @@ public class WeatherFragment extends Fragment {
         setCurrentTemp(model.mainModel.temp);
         setWeatherIcon(model.weatherModel[0].id, model.sysModel.sunrise * 1000, model.sysModel.sunset * 1000);
         setDate(model);
+        addToDB(model);
     }
 
     private void setDate(WeatherRequestModel model) {
