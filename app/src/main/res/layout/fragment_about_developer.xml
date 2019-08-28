@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
+                android:paddingEnd="1dp"
                 android:enabled="false"
                 android:text="@string/about_developer_text"
                 android:textColor="@color/text_color_black"/>
