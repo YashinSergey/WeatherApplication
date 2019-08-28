@@ -10,8 +10,8 @@
     </style>
 
     <style name="AppDarkTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">#065A92</item>
-        <item name="colorPrimaryDark">#054D75</item>
+        <item name="colorPrimary">#292727</item>
+        <item name="colorPrimaryDark">#03121A</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
