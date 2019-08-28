@@ -8,4 +8,5 @@
     <dimen name="updated_font_size">13sp</dimen>
     <dimen name="temperature_font_size">40sp</dimen>
     <dimen name="room_indicators_font_size">15sp</dimen>
+    <dimen name="icon_margin_top">50dp</dimen>
 </resources>

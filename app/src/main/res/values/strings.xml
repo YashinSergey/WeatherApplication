@@ -6,14 +6,14 @@
     <string name="select_city_dialog">Select city</string>
 
 
-    <string name="weather_sunny"></string>
-    <string name="weather_clear_night"></string>
-    <string name="weather_foggy"></string>
-    <string name="weather_cloudy"></string>
-    <string name="weather_rainy"></string>
-    <string name="weather_snowy"></string>
-    <string name="weather_thunder"></string>
-    <string name="weather_drizzle"></string>
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
     <string name="place_not_found">Sorry, required place not found</string>
 
 

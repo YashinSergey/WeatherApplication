@@ -71,6 +71,7 @@ public class WeatherFragment extends Fragment {
         weatherIcon.setTypeface(weatherFont);
         updateWeatherData(new CityPreference(activity).getCity());
         getSensors();
+        relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
         return rootView;
     }
 
@@ -125,33 +126,36 @@ public class WeatherFragment extends Fragment {
         int id = actualId / 100;
         String icon = "";
         long currentTime = new Date().getTime();
-        if (currentTime >= sunrise && currentTime < sunset) {
-            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        if(actualId == 800) {
+            if (currentTime >= sunrise && currentTime < sunset) {
+                icon = "\uF06E";
+            } else {
+                icon = getString(R.string.weather_clear_night);
+            }
         } else {
-            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day)); //Todo replace background
-        }
-        Log.d(LOG_TAG, "id " + id);
-        switch (id) {
-            case 2:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_thunder);
-                break;
-            case 3:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_drizzle);
-                break;
-            case 5:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_rainy);
-                break;
-            case 6:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_snowy);
-                break;
-            case 7:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_foggy);
-                break;
-            case 8:
-                icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_cloudy);
-                break;
-            default:
-                break;
+            Log.d(LOG_TAG, "id " + id);
+            switch (id) {
+                case 2:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_thunder);
+                    break;
+                case 3:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_drizzle);
+                    break;
+                case 5:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_rainy);
+                    break;
+                case 6:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_snowy);
+                    break;
+                case 7:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_foggy);
+                    break;
+                case 8:
+                    icon = Objects.requireNonNull(getActivity()).getString(R.string.weather_cloudy);
+                    break;
+                default:
+                    break;
+            }
         }
         weatherIcon.setText(icon);
     }
