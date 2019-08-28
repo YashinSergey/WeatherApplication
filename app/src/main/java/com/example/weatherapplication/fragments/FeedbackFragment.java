@@ -40,12 +40,20 @@ public class FeedbackFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
-        LinearLayout linearLayout = view.findViewById(R.id.feedback_fragment);
-        linearLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        setBackground(view);
         textInputEditText = view.findViewById(R.id.feedback_text);
         send = view.findViewById(R.id.feedback_button);
         send.setOnClickListener(listener);
         return view;
+    }
+
+    private void setBackground(View view) {
+        LinearLayout linearLayout = view.findViewById(R.id.feedback_fragment);
+        if (!activity.isDarkTheme()) {
+            linearLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
+        } else {
+            linearLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_dark));
+        }
     }
 
     private View.OnClickListener listener = new View.OnClickListener() {

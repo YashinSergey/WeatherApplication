@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,8 +72,17 @@ public class WeatherFragment extends Fragment {
         weatherIcon.setTypeface(weatherFont);
         updateWeatherData(new CityPreference(activity).getCity());
         getSensors();
-        relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        setBackground(rootView);
         return rootView;
+    }
+
+    private void setBackground(View view) {
+        RelativeLayout relativeLayout = view.findViewById(R.id.weather_fragment);
+        if (!activity.isDarkTheme()) {
+            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
+        } else {
+            relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_dark));
+        }
     }
 
     private void initViews(View rootView) {

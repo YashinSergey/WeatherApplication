@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,10 +33,19 @@ public class SettingsFragment extends Fragment {
         TableLayout tableLayout = view.findViewById(R.id.settings_fragment);
         WeatherActivity weatherActivity = (WeatherActivity) getActivity();
         assert weatherActivity != null;
-        tableLayout.setBackground(weatherActivity.getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        setBackground(view);
         switchTheme(view);
         switchSensors(view);
         return view;
+    }
+
+    private void setBackground(View view) {
+        TableLayout tableLayout = view.findViewById(R.id.settings_fragment);
+        if (!baseActivity.isDarkTheme()) {
+            tableLayout.setBackground(baseActivity.getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
+        } else {
+            tableLayout.setBackground(baseActivity.getApplicationContext().getResources().getDrawable(R.drawable.background_dark));
+        }
     }
 
     private void switchTheme(View view) {

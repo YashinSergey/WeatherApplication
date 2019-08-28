@@ -6,11 +6,12 @@
         <item name="colorPrimary">#005A96</item>
         <item name="colorPrimaryDark">#004469</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">#F3F1F1</item>
     </style>
 
     <style name="AppDarkTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">#043B61</item>
-        <item name="colorPrimaryDark">#054466</item>
+        <item name="colorPrimary">#065A92</item>
+        <item name="colorPrimaryDark">#054D75</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

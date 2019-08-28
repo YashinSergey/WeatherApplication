@@ -57,14 +57,14 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     private void initSideMenu() {
         drawer = findViewById(R.id.drawer_layout);
-        drawer.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        drawer.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_day));
+        navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
     }
 
     private void initToolbar() {
