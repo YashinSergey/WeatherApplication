@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.weatherapplication.activities.BaseActivity;
+import com.example.weatherapplication.activities.CoordinatesAct;
 import com.example.weatherapplication.weatherdata.CityPreference;
 import com.example.weatherapplication.R;
 import com.example.weatherapplication.activities.WeatherActivity;
@@ -53,7 +54,6 @@ public class WeatherFragment extends Fragment {
     private Sensor sensorTemperature;
     private Sensor sensorHumidity;
     private SensorManager sensorManager;
-    private RelativeLayout relativeLayout;
     private WeatherActivity activity;
 
     @Override
@@ -70,10 +70,19 @@ public class WeatherFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
         initViews(rootView);
         weatherIcon.setTypeface(weatherFont);
-        updateWeatherData(new CityPreference(activity).getCity());
+        setCityByCoordinates();
         getSensors();
         setBackground(rootView);
         return rootView;
+    }
+
+    private void setCityByCoordinates() {
+        if (!CoordinatesAct.CITY_NAME.equals(CoordinatesAct.MSG_NO_DATA) && CoordinatesAct.START){
+            updateWeatherData(CoordinatesAct.CITY_NAME);
+            CoordinatesAct.START = false;
+        } else {
+            updateWeatherData(new CityPreference(activity).getCity());
+        }
     }
 
     private void setBackground(View view) {
@@ -93,7 +102,6 @@ public class WeatherFragment extends Fragment {
         weatherIcon = rootView.findViewById(R.id.weather_icon);
         roomTemperature = rootView.findViewById(R.id.room_temperature);
         roomHumidity = rootView.findViewById(R.id.room_humidity);
-        relativeLayout = rootView.findViewById(R.id.weather_fragment);
     }
 
     private void updateWeatherData(final String city) {

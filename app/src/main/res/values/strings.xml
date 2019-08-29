@@ -32,6 +32,8 @@
     <string name="send">send</string>
     <string name="sensors">Sensors</string>
     <string name="communicate_menu">Communicate</string>
+    <string name="network_error">Network error</string>
+    <string name="maps">Maps</string>
 
 
 
@@ -51,5 +53,4 @@
     There must be something about the developer. There must be something about the developer. There must be something about the developer.
     There must be something about the developer. There must be something about the developer. There must be something about the developer.
     There must be something about the developer. There must be something about the developer. There must be something about the developer. </string>
-    <string name="network_error">Network error</string>
 </resources>

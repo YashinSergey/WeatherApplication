@@ -117,6 +117,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 selectCity(input.getText().toString());
+                replaceFragment(weatherFragment);
             }
         });
         builder.show();
