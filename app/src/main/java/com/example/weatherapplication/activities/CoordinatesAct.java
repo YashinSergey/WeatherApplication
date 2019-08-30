@@ -31,7 +31,7 @@ public class CoordinatesAct extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress_bar);
         START = true;
-
+        checkPermission();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         setLocation();
