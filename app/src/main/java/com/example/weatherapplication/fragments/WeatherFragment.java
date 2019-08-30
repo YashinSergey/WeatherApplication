@@ -79,6 +79,7 @@ public class WeatherFragment extends Fragment {
     private void setCityByCoordinates() {
         if (!CoordinatesAct.CITY_NAME.equals(CoordinatesAct.MSG_NO_DATA) && CoordinatesAct.START){
             updateWeatherData(CoordinatesAct.CITY_NAME);
+            new CityPreference(activity).setCity(CoordinatesAct.CITY_NAME);
             CoordinatesAct.START = false;
         } else {
             updateWeatherData(new CityPreference(activity).getCity());
