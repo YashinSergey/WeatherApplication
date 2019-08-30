@@ -52,7 +52,7 @@ public class CoordinatesAct extends Activity {
         }
     }
 
-    private Location setLocation() {
+    private void setLocation() {
         checkPermission();
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -63,7 +63,6 @@ public class CoordinatesAct extends Activity {
         } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
         }
-        return location;
     }
 
     @Override
