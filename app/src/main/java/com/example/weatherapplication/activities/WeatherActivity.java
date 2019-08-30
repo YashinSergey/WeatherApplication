@@ -14,6 +14,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.weatherapplication.R;
 import com.example.weatherapplication.fragments.AboutDeveloperFragment;
@@ -57,14 +58,25 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     private void initSideMenu() {
         drawer = findViewById(R.id.drawer_layout);
-        drawer.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
+        setSideMenuTheme(navigationView);
+    }
+
+    private void setSideMenuTheme(NavigationView navigationView) {
+        if (isDarkTheme()) {
+            navigationView.getHeaderView(0).findViewById(R.id.nav_header).setBackground(getApplicationContext()
+                    .getResources().getDrawable(R.drawable.side_nav_bar_dark));
+            navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_dark));
+        } else {
+            navigationView.getHeaderView(0).findViewById(R.id.nav_header).setBackground(getApplicationContext()
+                    .getResources().getDrawable(R.drawable.side_nav_bar_lite));
+            navigationView.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
+        }
     }
 
     private void initToolbar() {
