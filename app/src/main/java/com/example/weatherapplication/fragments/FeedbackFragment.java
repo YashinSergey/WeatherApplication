@@ -1,13 +1,14 @@
 package com.example.weatherapplication.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +24,7 @@ import java.util.Objects;
 
 public class FeedbackFragment extends Fragment {
 
-    private TextInputEditText textInputEditText;
+    private TextInputEditText etTextInput;
     private MaterialButton send;
     private WeatherActivity activity;
     private WeatherFragment weatherFragment;
@@ -41,10 +42,14 @@ public class FeedbackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
         setBackground(view);
-        textInputEditText = view.findViewById(R.id.feedback_text);
-        send = view.findViewById(R.id.feedback_button);
+        initViews(view);
         send.setOnClickListener(listener);
         return view;
+    }
+
+    private void initViews(View view) {
+        etTextInput = view.findViewById(R.id.feedback_text);
+        send = view.findViewById(R.id.feedback_button);
     }
 
     private void setBackground(View view) {
@@ -59,10 +64,19 @@ public class FeedbackFragment extends Fragment {
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (!Objects.requireNonNull(textInputEditText.getText()).toString().equals("")) {
-                textInputEditText.setText("");
-                Toast.makeText(activity.getApplicationContext(), "message sent", Toast.LENGTH_SHORT).show();
+            String subject = "Weather app review";
+            String address = "yashinsergey125@gmail.com";
+
+            if (!Objects.requireNonNull(etTextInput.getText()).toString().equals("")) {
+                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                        new String[] { address});
+                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, etTextInput.getText().toString());
+                activity.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
                 closeVirtualKeyboard(view);
+                etTextInput.setText("");
                 replaceFragment(weatherFragment);
             }
         }
