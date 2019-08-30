@@ -23,7 +23,7 @@
     <string name="theme">Theme</string>
     <string name="navigation_header">Navigation header</string>
     <string name="developer">Sergey Yashin</string>
-    <string name="about_developer">About developer</string>
+    <string name="about_application">About app</string>
     <string name="feedback">Feedback</string>
     <string name="menu_home">Home</string>
     <string name="open_navigation_drawer">Open navigation drawer</string>
@@ -37,20 +37,6 @@
 
 
 
-    <string name="about_developer_text">There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer.
-    There must be something about the developer. There must be something about the developer. There must be something about the developer. </string>
+    <string name="about_developer_text">This application was created by beginner Android developer Sergei Iashin. It has no ads and paid content.
+                                        P.s. I hope you enjoy it.</string>
 </resources>

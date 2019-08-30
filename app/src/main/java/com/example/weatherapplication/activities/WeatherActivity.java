@@ -14,10 +14,9 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.example.weatherapplication.R;
-import com.example.weatherapplication.fragments.AboutDeveloperFragment;
+import com.example.weatherapplication.fragments.AboutApplicationFragment;
 import com.example.weatherapplication.fragments.FeedbackFragment;
 import com.example.weatherapplication.fragments.SettingsFragment;
 import com.example.weatherapplication.fragments.WeatherFragment;
@@ -30,7 +29,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
 
     private CityPreference cityPreference;
     private SettingsFragment settingsFragment;
-    private AboutDeveloperFragment aboutDeveloperFragment;
+    private AboutApplicationFragment aboutDeveloperFragment;
     private FeedbackFragment feedbackFragment;
     private WeatherFragment weatherFragment;
     private DrawerLayout drawer;
@@ -52,7 +51,7 @@ public class WeatherActivity extends BaseActivity implements NavigationView.OnNa
             replaceFragment(weatherFragment);
         }
         settingsFragment = new SettingsFragment();
-        aboutDeveloperFragment = new AboutDeveloperFragment();
+        aboutDeveloperFragment = new AboutApplicationFragment();
         feedbackFragment = new FeedbackFragment();
     }
 
