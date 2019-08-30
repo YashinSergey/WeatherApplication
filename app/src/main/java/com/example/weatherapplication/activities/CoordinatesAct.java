@@ -23,9 +23,8 @@ public class CoordinatesAct extends Activity {
     public static String CITY_NAME;
     public static boolean START;
 
-    private Location loc;
     private LocationManager locationManager = null;
-
+    private Location location = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +45,25 @@ public class CoordinatesAct extends Activity {
     }
 
     private void setCityName() {
-        if (loc != null) {
-            CITY_NAME = getAddressByLoc(loc);
+        if (location != null) {
+            CITY_NAME = getAddressByLoc(location);
         } else {
             CITY_NAME = MSG_NO_DATA;
         }
     }
 
-    private void setLocation() {
+    private Location setLocation() {
         checkPermission();
-        loc = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-        loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        }
+        return location;
     }
 
     @Override
