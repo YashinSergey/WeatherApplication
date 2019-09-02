@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.weatherapplication.activities.BaseActivity;
 import com.example.weatherapplication.activities.CoordinatesAct;
 import com.example.weatherapplication.weatherdata.CityPreference;
 import com.example.weatherapplication.R;
@@ -77,13 +76,15 @@ public class WeatherFragment extends Fragment {
     }
 
     private void setCityByCoordinates() {
-        if (!CoordinatesAct.CITY_NAME.equals(CoordinatesAct.MSG_NO_DATA) && CoordinatesAct.START){
-            updateWeatherData(CoordinatesAct.CITY_NAME);
-            new CityPreference(activity).setCity(CoordinatesAct.CITY_NAME);
-            CoordinatesAct.START = false;
-        } else {
-            updateWeatherData(new CityPreference(activity).getCity());
+        if (CoordinatesAct.CITY_NAME != null) {
+            if (!CoordinatesAct.CITY_NAME.equals(CoordinatesAct.MSG_NO_DATA) && CoordinatesAct.START) {
+                updateWeatherData(CoordinatesAct.CITY_NAME);
+                new CityPreference(activity).setCity(CoordinatesAct.CITY_NAME);
+                CoordinatesAct.START = false;
+                return;
+            }
         }
+        updateWeatherData(new CityPreference(activity).getCity());
     }
 
     private void setBackground(View view) {
