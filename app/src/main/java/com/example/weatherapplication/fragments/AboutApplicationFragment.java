@@ -1,7 +1,6 @@
 package com.example.weatherapplication.fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.example.weatherapplication.R;
 import com.example.weatherapplication.activities.WeatherActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-public class AboutDeveloperFragment extends Fragment {
+public class AboutApplicationFragment extends Fragment {
 
     private WeatherActivity activity;
     private TextView textView;
@@ -33,12 +32,11 @@ public class AboutDeveloperFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_about_developer, container, false);
+        View view = inflater.inflate(R.layout.fragment_about_application, container, false);
         init(view);
 
         relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_lite));
         if (activity.isDarkTheme()) {
-            textView.setTextColor(Color.WHITE);
             relativeLayout.setBackground(activity.getApplicationContext().getResources().getDrawable(R.drawable.background_dark));
         }
         return view;

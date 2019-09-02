@@ -11,7 +11,7 @@
         <item
             android:id="@+id/about_developer"
             android:icon="@mipmap/perm_identity"
-            android:title="@string/about_developer" />
+            android:title="@string/about_application" />
         <item
             android:id="@+id/settings"
             android:icon="@mipmap/settings_icon"
