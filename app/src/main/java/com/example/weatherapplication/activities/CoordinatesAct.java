@@ -20,7 +20,7 @@ import java.util.List;
 public class CoordinatesAct extends Activity {
 
     public final static String MSG_NO_DATA = "No data";
-    public static String CITY_NAME;
+    public static String CITY_NAME = MSG_NO_DATA;
     public static boolean START;
 
     private LocationManager locationManager = null;
