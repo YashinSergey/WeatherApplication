@@ -102,8 +102,13 @@ public class CoordinatesAct extends Activity {
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ActivityCompat.requestPermissions(CoordinatesAct.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                }
+            }).start();
         }
     }
 }
